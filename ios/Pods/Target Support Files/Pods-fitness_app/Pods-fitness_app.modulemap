@@ -1,0 +1,6 @@
+module Pods_fitness_app {
+  umbrella header "Pods-fitness_app-umbrella.h"
+
+  export *
+  module * { export * }
+}
