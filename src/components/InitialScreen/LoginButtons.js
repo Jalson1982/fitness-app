@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from "react-native";
 import { BorderlessButton } from "react-native-gesture-handler";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 
-const LoginButtons = ({emailLogin}) => {
+const LoginButtons = ({emailLogin, signUp}) => {
   return (
     <View style={styles.container}>
       <BorderlessButton borderless={false} style={styles.facebookButton}>
@@ -20,6 +20,7 @@ const LoginButtons = ({emailLogin}) => {
       <BorderlessButton
         borderless={false}
         style={styles.signupButton}
+        onPress={signUp}
       >
         <View accessible>
         <Text style={styles.buttonTitleBlack}>SIGN UP</Text>

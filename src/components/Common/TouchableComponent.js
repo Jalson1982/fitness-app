@@ -6,7 +6,6 @@ const TouchableComponent = props => {
   const { onPress, pressDisabled } = props;
   let disabled = false;
   function handleOnPress(...args) {
-      console.log("hiii")
     if (disabled) return;
     disabled = true;
     setTimeout(() => {

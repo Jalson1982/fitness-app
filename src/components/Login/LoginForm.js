@@ -31,6 +31,7 @@ const LoginForm = () => {
         baseColor={"#FFFFFF"}
         label="Password"
       />
+      
        <BorderlessButton borderless={false} style={styles.loginButton} >
         <View accessible>
           <Text style={styles.buttonTitle}>LOG IN WITH EMAIL</Text>

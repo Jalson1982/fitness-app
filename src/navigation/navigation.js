@@ -2,18 +2,18 @@ import React from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Dimensions, Platform } from "react-native";
 import InitialScreen from "../containers/InitialScreen";
 import Login from "../containers/Login";
-import SignUp from "../containers/SignuUp";
+import SignUp from "../containers/SignUp";
 import Workout from "../containers/Workout";
+import WelcomeToPt from "../containers/WelcomeToPt";
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
 const defaultScreenOptions = {
-    headerShown: false
-  };
+  headerShown: false,
+};
 
 export function AuthScreen() {
   return (
@@ -28,6 +28,13 @@ export function AuthScreen() {
   );
 }
 
+export function AppSetup() {
+  return (
+    <Stack.Navigator screenOptions={defaultScreenOptions}>
+      <Stack.Screen name="Welcome" component={WelcomeToPt} />
+    </Stack.Navigator>
+  );
+}
 export function TabNavigator() {
   return (
     <Tab.Navigator>
