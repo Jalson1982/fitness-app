@@ -1,12 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Swiper from 'react-native-swiper';
-import LottieView from 'lottie-react-native';
 import FirstSlide from './FirstSlide';
 import SecondSlide from './SecondSlide';
 import ThirdSlide from './ThirdSlide';
 import FourSlide from './FourSlide';
 import FiveSlide from './FiveSlide';
+import SixSlide from './SixSlide';
+import SevenSlide from './SevenSlide';
+import EightSlide from './EightSlide';
+import NineSlide from './NineSlide';
+import TenSlide from './TenSlide';
+import ElevenSlide from './ElevenSlide';
 
 const styles = StyleSheet.create({
   wrapper: {marginTop:20},
@@ -41,7 +46,13 @@ const SwipeScreens = ({swipeRef, goToNext}) => {
         <ThirdSlide goToNext={goToNext}/>
         <FourSlide goToNext={goToNext}/>
         <FiveSlide goToNext={goToNext}/>
+        <SixSlide goToNext={goToNext}/>
+        <SevenSlide goToNext={goToNext}/>
         <SecondSlide goToNext={goToNext}/>
+        <EightSlide goToNext={goToNext}/>
+        <NineSlide goToNext={goToNext}/>
+        <TenSlide goToNext={goToNext}/>
+        <ElevenSlide goToNext={goToNext}/>
         <View style={styles.slide3}>
           <Text style={styles.text}>And simple</Text>
         </View>

@@ -11,11 +11,11 @@ const SecondSlide = ({goToNext}) => {
         autoPlay
         style={styles.animation}
       />
-      <View style={{flex:1, alignItems:'center'}}>
+      <View style={{flex:1,alignItems:'center'}}>
       <Text style={styles.title}>
-        Welcome to PT ONLINE!
+        You'll now get 3 exercises tests
       </Text>
-      <Text style={styles.description}>Let's get started with your personalised workout programme.</Text>
+      <Text style={styles.description}>Learning about your physical abilities is important for the app to tailor your workouts correctly.</Text>
       </View>
       <SubmitButton title='NEXT' onPress={goToNext} />
     </View>
@@ -26,10 +26,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "flex-start",
-    alignItems: "center",
   },
-  animation: { height: 300, marginTop: 20, flex:1 },
+  animation: { height: 300, marginTop: 20, flex:1, alignSelf:'center' },
   title: { marginTop: 60, fontSize: 25, fontWeight: "600" },
-  description:{paddingTop:20,fontSize:16,textAlign:'center'}
+  description:{paddingTop:10,fontSize:16,textAlign:'center',paddingLeft:20,paddingRight:20,color:'gray'}
 });
 export default SecondSlide;
