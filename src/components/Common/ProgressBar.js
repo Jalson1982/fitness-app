@@ -1,11 +1,11 @@
 import React from "react";
-import { View } from "react-native";
+import { View, StyleSheet} from "react-native";
 import * as Progress from "react-native-progress";
 import { widthPercentageToDP } from "react-native-responsive-screen";
 
 const ProgressBar = ({progress}) => {
   return (
-    <View style={{ paddingLeft: widthPercentageToDP('4%'), paddingRight: widthPercentageToDP('4%'), marginTop: 20 }}>
+    <View style={styles.container}>
       <Progress.Bar
         progress={progress}
         borderRadius={8}
@@ -19,5 +19,9 @@ const ProgressBar = ({progress}) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: { paddingLeft: widthPercentageToDP('4%'), paddingRight: widthPercentageToDP('4%'), marginTop: 20 }
+})
 
 export default ProgressBar;

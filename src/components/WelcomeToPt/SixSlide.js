@@ -1,9 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import { widthPercentageToDP } from "react-native-responsive-screen";
 import SubmitButton from "../Common/SubmitButton";
 
-const SixSlide = ({ goToNext }) => {
+const SixSlide = ({ goToNext, height, updateDetails, metric}) => {
+  const [val,setVal] = useState(height);
+  function onChange(val) {
+    setVal(val);
+  }
+  function saveHeight() {
+    if(val) {
+      goToNext();
+      updateDetails('height',val);
+    }
+  }
   const inputRef = useRef();
   return (
     <View style={styles.container}>
@@ -18,13 +28,15 @@ const SixSlide = ({ goToNext }) => {
           <TextInput
             ref={inputRef}
             textAlign={"center"}
+            value={val}
             keyboardType="numeric"
             style={styles.textInput}
             placeholder={'-'}
+            onChangeText={(val) => onChange(val)}
           />
-          <Text style={styles.fontBold}>kg</Text>
+          <Text style={styles.fontBold}>{ metric==='m' ? 'kg' : 'lb'}</Text>
         </View>
-        <SubmitButton title="NEXT" onPress={goToNext} />
+        <SubmitButton title="NEXT" onPress={saveHeight} />
       </View>
     </View>
   );
@@ -33,11 +45,9 @@ const SixSlide = ({ goToNext }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
   },
-  titleContainer: { flex: 1, alignItems: "center" },
-  title: { marginTop: 60, fontSize: 25, fontWeight: "600" },
+  titleContainer: { flex: 1 },
+  title: { marginTop: 20, fontSize: 25, fontWeight: "600",paddingLeft:20,paddingRight:20 },
   description: {
     paddingTop: 20,
     fontSize: 16,
@@ -47,6 +57,7 @@ const styles = StyleSheet.create({
   },
   metricContainer: {
     flexDirection: "row",
+    alignSelf:'center',
     alignItems: "center",
     justifyContent: "center",
     height: 60,

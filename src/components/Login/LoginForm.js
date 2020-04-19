@@ -1,12 +1,14 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, ActivityIndicator } from "react-native";
 import {
   TextField,
 } from "react-native-material-textfield";
 import { BorderlessButton } from "react-native-gesture-handler";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 
-const LoginForm = () => {
+const LoginForm = ({loginDetails,error,onChange,login, isLoading}) => {
+  const { email, password } = loginDetails;
+  const { emailError, passwordError} = error;
   return (
     <View style={styles.container}>
       <TextField
@@ -14,6 +16,10 @@ const LoginForm = () => {
         labelFontSize={14}
         blurOnSubmit={false}
         lineWidth={2}
+        value={email}
+        autoCapitalize = 'none'
+        onChangeText={(val)=>onChange("email", val)}
+        error={emailError ? emailError : null}
         tintColor={"#FFFFFF"}
         baseColor={"#FFFFFF"}
         textColor={"#FFFFFF"}
@@ -23,17 +29,22 @@ const LoginForm = () => {
       <TextField
         inputContainerStyle={{ paddingLeft: 20 }}
         labelFontSize={14}
-        blurOnSubmit={false}
+        blurOnSubmit
         textColor={"#FFFFFF"}
         lineWidth={2}
+        value={password}
+        onChangeText={(val)=>onChange("password", val)}
+        error={passwordError}
+        secureTextEntry={true}
         returnKeyType="next"
         tintColor={"#FFFFFF"}
         baseColor={"#FFFFFF"}
         label="Password"
       />
       
-       <BorderlessButton borderless={false} style={styles.loginButton} >
-        <View accessible>
+       <BorderlessButton borderless={false} style={styles.loginButton} onPress={login} >
+        <View accessible style={{flexDirection:'row'}}>
+          {isLoading && <ActivityIndicator color="#FFFFFF" />}  
           <Text style={styles.buttonTitle}>LOG IN WITH EMAIL</Text>
         </View>
       </BorderlessButton>

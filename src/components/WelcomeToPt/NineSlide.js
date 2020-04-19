@@ -3,20 +3,22 @@ import {
   View,
   Text,
   StyleSheet,
+  TouchableWithoutFeedback,
   TouchableOpacity,
-  Modal,
+  ScrollView
 } from "react-native";
-import SubmitButton from "../Common/SubmitButton.js";
+import Modal from 'react-native-modal';
 import { widthPercentageToDP } from "react-native-responsive-screen";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Video } from "expo-av";
+import { BorderlessButton } from "react-native-gesture-handler";
 
 const video = require("../../assets/732-1080.mp4");
-const NineSlide = ({ goToNext }) => {
+const NineSlide = ({ goToNext, test, updateDetails }) => {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <View style={styles.container}>
-      <Modal visible={isVisible} animationType="fade">
+       <Modal isVisible={isVisible} style={{margin:0}} animationIn="zoomIn" animationOut="fadeOutDown">
         <View style={styles.flex1}>
           <TouchableOpacity
             onPress={() => setIsVisible(false)}
@@ -37,13 +39,14 @@ const NineSlide = ({ goToNext }) => {
         </View>
       </Modal>
       <View style={styles.videoContainer}>
-        <TouchableOpacity
+        <TouchableWithoutFeedback
           onPress={() => setIsVisible(true)}
-          style={styles.playBtnContainer}
         >
+        <View style={styles.playBtnContainer}>
           <Icon name="play" color="#FFFFFF" size={90}></Icon>
           <Text style={styles.playBtnTitle}>PLAY VIDEO</Text>
-        </TouchableOpacity>
+          </View>
+        </TouchableWithoutFeedback>
         <Video
           isMuted
           shouldPlay={false}
@@ -53,46 +56,60 @@ const NineSlide = ({ goToNext }) => {
           style={[styles.flex1, { opacity: 0.4 }]}
         ></Video>
       </View>
-      <View style={styles.flex1}>
+      <ScrollView style={styles.flex1}>
         <Text style={styles.title}>Shoulder mobility test</Text>
         <Text style={styles.description}>
           Hold a shoe between your hands  and move your arms backwards.
         </Text>
+        <BorderlessButton borderless={false} onPress={()=>{
+          updateDetails('test',{...test,'shoulderMobility':0});
+          goToNext();
+        }}>
         <View style={styles.metricContainer}>
           <View>
             <Text style={styles.option}>
               1. Arms are anywhere between a 90 and 45 degree angle to the floor
             </Text>
           </View>
-          <View style={styles.check}>
+          {test.shoulderMobility=== 0 &&   <View style={styles.check}>
             <Icon name="check" size={25} color="#00BFFF" />
-          </View>
+          </View>}
         </View>
+        </BorderlessButton>
         <View style={styles.divider} />
+        <BorderlessButton borderless={false} onPress={()=>{
+          updateDetails('test',{...test,'shoulderMobility':1});
+          goToNext();
+        }}>
         <View style={styles.metricContainer}>
           <View>
             <Text style={styles.option}>
               2. Arms are beyond a 45 degree angle but don't reach the floor
             </Text>
           </View>
-          <View style={styles.check}>
+          {test.shoulderMobility=== 1 &&   <View style={styles.check}>
             <Icon name="check" size={25} color="#00BFFF" />
-          </View>
+          </View>}
         </View>
+        </BorderlessButton>
         <View style={styles.divider} />
+        <BorderlessButton borderless={false} onPress={()=>{
+          updateDetails('test',{...test,'shoulderMobility':2});
+          goToNext();
+        }}>
         <View style={styles.metricContainer}>
           <View>
             <Text style={styles.option}>
               3. Arms and shoe reach the floor
             </Text>
           </View>
-          <View style={styles.check}>
+          {test.shoulderMobility=== 2 &&   <View style={styles.check}>
             <Icon name="check" size={25} color="#00BFFF" />
-          </View>
+          </View>}
         </View>
+        </BorderlessButton>
         <View style={styles.divider} />
-      </View>
-      <SubmitButton title="NEXT" onPress={goToNext} />
+      </ScrollView>
     </View>
   );
 };
@@ -151,10 +168,10 @@ const styles = StyleSheet.create({
     width: widthPercentageToDP("90%"),
   },
   divider: {
-    height: 0.8,
+    height: 1,
     backgroundColor: "gray",
     width: widthPercentageToDP("90%"),
-    opacity: 0.3,
+    opacity: 0.15,
     marginLeft: 10,
   },
   option: {
@@ -164,6 +181,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     width: widthPercentageToDP("85%"),
   },
-  check: { width: 25, margin: 0 },
+  check: { width: 25, marginLeft:10 },
 });
 export default NineSlide;

@@ -7,7 +7,7 @@ export const signUp = (userData) => {
   };
 };
 
-export const login = (userData) => {
+export const loginUser = (userData) => {
     return {
         type: AUTHENTICATE_USER,
         payload: userData
@@ -19,4 +19,14 @@ export const signOut = () => {
         type: SIGN_OUT_USER,
         payload: {}
     }
+}
+
+export const updateUserAppSetupDetails = (name,value) => {
+  return {
+    type: 'UPDATE_USER_APP_SETUP_DETAILS',
+    payload:{
+      name,
+      value
+    }
+  }
 }

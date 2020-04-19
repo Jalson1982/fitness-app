@@ -128,7 +128,8 @@ const SignUp = ({ navigation }) => {
       });;
       setTimeout(()=>{
         setIsLoading(false);
-        dispatch(signUpAction(signUpDetails))
+        const { verifyEmail, password, ...signUp} = signUpDetails;
+        dispatch(signUpAction(signUp))
       }, 3000)
     }
   }

@@ -4,19 +4,20 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Modal,
+  TouchableWithoutFeedback,
 } from "react-native";
-import SubmitButton from "../Common/SubmitButton.js";
+import Modal from 'react-native-modal';
 import { widthPercentageToDP } from "react-native-responsive-screen";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Video } from "expo-av";
+import { BorderlessButton, ScrollView } from "react-native-gesture-handler";
 
 const video = require("../../assets/287-1080.mp4");
-const EightSlide = ({ goToNext }) => {
+const EightSlide = ({ goToNext, test, updateDetails }) => {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <View style={styles.container}>
-      <Modal visible={isVisible} animationType="fade">
+      <Modal isVisible={isVisible} style={{margin:0}} animationIn="zoomIn" animationOut="fadeOutDown">
         <View style={styles.flex1}>
           <TouchableOpacity
             onPress={() => setIsVisible(false)}
@@ -37,67 +38,94 @@ const EightSlide = ({ goToNext }) => {
         </View>
       </Modal>
       <View style={styles.videoContainer}>
-        <TouchableOpacity
-          onPress={() => setIsVisible(true)}
-          style={styles.playBtnContainer}
-        >
-          <Icon name="play" color="#FFFFFF" size={90}></Icon>
-          <Text style={styles.playBtnTitle}>PLAY VIDEO</Text>
-        </TouchableOpacity>
+        <TouchableWithoutFeedback onPress={() => setIsVisible(true)}>
+          <View style={styles.playBtnContainer}>
+            <Icon name="play" color="#FFFFFF" size={90}></Icon>
+            <Text style={styles.playBtnTitle}>PLAY VIDEO</Text>
+          </View>
+        </TouchableWithoutFeedback>
         <Video
           isLooping
           isMuted
+          loa
           shouldPlay={false}
-          key={3}
           resizeMode={Video.RESIZE_MODE_COVER}
-          usePoster
           source={video}
           style={[styles.flex1, { opacity: 0.4 }]}
         ></Video>
       </View>
-      <View style={styles.flex1}>
+      <ScrollView style={styles.flex1}>
         <Text style={styles.title}>Ankle mobility test</Text>
         <Text style={styles.description}>
           Place a shoe in front of your foot and slowly move your knee forward
           without lifting your heel from the floor. Do the test on both legs and
           choose the lowest result.
         </Text>
-        <View style={styles.metricContainer}>
-          <View>
-            <Text style={styles.option}>
-              1. The knee doesn't react a position that's above the shoe{" "}
-            </Text>
+        <BorderlessButton
+          borderless={false}
+          onPress={() => {
+            updateDetails("test", { ...test, ankleMobility: 0 });
+            goToNext();
+          }}
+        >
+          <View style={styles.metricContainer}>
+            <View>
+              <Text style={styles.option}>
+                1. The knee doesn't react a position that's above the shoe{" "}
+              </Text>
+            </View>
+            {test.ankleMobility === 0 && (
+              <View style={styles.check}>
+                <Icon name="check" size={25} color="#00BFFF" />
+              </View>
+            )}
           </View>
-          <View style={styles.check}>
-            <Icon name="check" size={25} color="#00BFFF" />
-          </View>
-        </View>
+        </BorderlessButton>
         <View style={styles.divider} />
-        <View style={styles.metricContainer}>
-          <View>
-            <Text style={styles.option}>
-              2. The knee reaches a position that's above the shoe but not
-              beyond
-            </Text>
+        <BorderlessButton
+          borderless={false}
+          onPress={() => {
+            updateDetails("test", { ...test, ankleMobility: 1 });
+            goToNext();
+          }}
+        >
+          <View style={styles.metricContainer}>
+            <View>
+              <Text style={styles.option}>
+                2. The knee reaches a position that's above the shoe but not
+                beyond
+              </Text>
+            </View>
+            {test.ankleMobility === 1 && (
+              <View style={styles.check}>
+                <Icon name="check" size={25} color="#00BFFF" />
+              </View>
+            )}
           </View>
-          <View style={styles.check}>
-            <Icon name="check" size={25} color="#00BFFF" />
-          </View>
-        </View>
+        </BorderlessButton>
         <View style={styles.divider} />
-        <View style={styles.metricContainer}>
-          <View>
-            <Text style={styles.option}>
-              3. The knee reaches beyond the shoes.
-            </Text>
+        <BorderlessButton
+          borderless={false}
+          onPress={() => {
+            updateDetails("test", { ...test, ankleMobility: 2 });
+            goToNext();
+          }}
+        >
+          <View style={styles.metricContainer}>
+            <View>
+              <Text style={styles.option}>
+                3. The knee reaches beyond the shoes.
+              </Text>
+            </View>
+            {test.ankleMobility === 2 && (
+              <View style={styles.check}>
+                <Icon name="check" size={25} color="#00BFFF" />
+              </View>
+            )}
           </View>
-          <View style={styles.check}>
-            <Icon name="check" size={25} color="#00BFFF" />
-          </View>
-        </View>
+        </BorderlessButton>
         <View style={styles.divider} />
-      </View>
-      <SubmitButton title="NEXT" onPress={goToNext} />
+      </ScrollView>
     </View>
   );
 };
@@ -110,7 +138,7 @@ const styles = StyleSheet.create({
   flex1: { flex: 1 },
   closeButton: {
     position: "absolute",
-    top: 50,
+    top: widthPercentageToDP('10%'),
     right: 10,
     justifyContent: "center",
     alignItems: "center",
@@ -156,10 +184,10 @@ const styles = StyleSheet.create({
     width: widthPercentageToDP("90%"),
   },
   divider: {
-    height: 0.8,
+    height: 1,
     backgroundColor: "gray",
     width: widthPercentageToDP("90%"),
-    opacity: 0.3,
+    opacity: 0.15,
     marginLeft: 10,
   },
   option: {
@@ -169,6 +197,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     width: widthPercentageToDP("85%"),
   },
-  check: { width: 25, margin: 0 },
+  check: { width: 25, marginLeft: 10 },
 });
 export default EightSlide;
