@@ -1,15 +1,66 @@
 import React from "react";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import InitialScreen from "../containers/InitialScreen";
 import Login from "../containers/Login";
 import SignUp from "../containers/SignUp";
-import Workout from "../containers/Workout";
 import WelcomeToPt from "../containers/WelcomeToPt";
+import AnimatedTabBar from "@gorhom/animated-tabbar";
+import HomeSVG from '../components/Svg/homeSvg';
+import LikeSVG from '../components/Svg/likeSvg';
+import ProfileSVG from '../components/Svg/profileSvg';
+import Schedule from "../containers/Schedule";
+import Workout from "../containers/Workout";
+import VideoExercise from "../containers/VideoExercise";
 
 const Stack = createStackNavigator();
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
+
+const tabs = {
+  Home: {
+    labelStyle: {
+      color: '#45db74',
+    },
+    icon: {
+      component: HomeSVG,
+      activeColor: '#45db74',
+      inactiveColor: '#FFFFFF',
+    },
+    background: {
+      activeColor: '#FFFFFF',
+      inactiveColor: 'rgba(51,51,51,0)',
+    },
+  },
+  Likes: {
+    labelStyle: {
+      color: '#45db74',
+    },
+    icon: {
+      component: LikeSVG,
+      activeColor: '#45db74',
+      inactiveColor: '#FFFFFF',
+    },
+    background: {
+      activeColor: '#FFFFFF',
+      inactiveColor: 'rgba(51,51,51,0)',
+    },
+  },
+  Profile: {
+    labelStyle: {
+      color: '#45db74',
+    },
+    icon: {
+      component: ProfileSVG,
+      activeColor: '#45db74',
+      inactiveColor: '#FFFFFF',
+    },
+    background: {
+      activeColor: '#FFFFFF',
+      inactiveColor: 'rgba(51,51,51,0)',
+    },
+  },
+};
+
 
 const defaultScreenOptions = {
   headerShown: false,
@@ -35,11 +86,66 @@ export function AppSetup() {
     </Stack.Navigator>
   );
 }
+
+export function Workouts() {
+  return (
+    <Stack.Navigator screenOptions={{headerShown:false}}>
+      <Stack.Screen name="Schedule" component={Schedule} />
+      <Stack.Screen name="Workout" component={Workout} />
+      <Stack.Screen name="VideoExercise" component={VideoExercise} />
+    </Stack.Navigator>
+  )
+}
 export function TabNavigator() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={Workout} />
-      <Tab.Screen name="Settings" component={Workout} />
-    </Tab.Navigator>
+    <Tab.Navigator
+    initialRouteName="Home"
+    tabBarOptions={{
+      style: {
+        backgroundColor: '#45db74',
+      },
+    }}
+    tabBar={props => (
+      <AnimatedTabBar
+        isRTL={true}
+        iconSize={20}
+        duration={500}
+        tabs={tabs}
+        {...props}
+      />
+    )}
+  >
+
+    <Tab.Screen
+      name="Likes"
+      options={{
+        tabBarLabel: 'Menu',
+      }}
+      initialParams={{
+        backgroundColor: '#000',
+      }}
+      component={Schedule}
+    />
+    <Tab.Screen
+      name="Profile"
+      options={{
+        tabBarLabel: 'Profile',
+      }}
+      initialParams={{
+        backgroundColor: '#000',
+      }}
+      component={Schedule}
+    />
+     <Tab.Screen
+      name="Home"
+      options={{
+        tabBarLabel: 'Studio',
+      }}
+      initialParams={{
+        backgroundColor: '#000',
+      }}
+      component={Workouts}
+    />
+     </Tab.Navigator>
   );
 }

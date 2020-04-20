@@ -1,4 +1,4 @@
-import { SIGN_OUT_USER, AUTHENTICATE_USER, SIGN_UP } from "./types";
+import { SIGN_OUT_USER, AUTHENTICATE_USER, SIGN_UP, APP_SETUP_DONE } from "./types";
 
 export const signUp = (userData) => {
   return {
@@ -29,4 +29,11 @@ export const updateUserAppSetupDetails = (name,value) => {
       value
     }
   }
+}
+
+export const setAppSetupDone = data => {
+  return ({
+    type: APP_SETUP_DONE,
+    payload: data
+  })
 }

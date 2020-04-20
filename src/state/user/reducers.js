@@ -1,29 +1,35 @@
-import { SIGN_OUT_USER, AUTHENTICATE_USER, SIGN_UP, UPDATE_USER_APP_SETUP_DETAILS } from "./types";
+import {
+  SIGN_OUT_USER,
+  AUTHENTICATE_USER,
+  SIGN_UP,
+  UPDATE_USER_APP_SETUP_DETAILS,
+  APP_SETUP_DONE,
+} from "./types";
 import isEmpty from "../../helpers/isEmpty";
 
 const initialState = {
   isAuthenticated: false,
   userDetails: {},
   appSetupDone: false,
-  appSetupDetails:{
-    sex: 'female',
-    progress:0,
-    birthData: '',
-    weight: '',
-    height: '',
-    metric: '',
-    fitnessGoal:'',
-    eqipment: '',
-    experience: '',
-    sessionTime: '',
-    workDays:[],
-    reminder:'',
-    test:{
-      ankleMobility:'',
-      shoulderMobility:'',
-      coreStability: ''
-    }
-  }
+  appSetupDetails: {
+    sex: "female",
+    progress: 0,
+    birthData: "",
+    weight: "",
+    height: "",
+    metric: "",
+    fitnessGoal: "",
+    eqipment: "",
+    experience: "",
+    sessionTime: "",
+    workDays: [],
+    reminder: "",
+    test: {
+      ankleMobility: "",
+      shoulderMobility: "",
+      coreStability: "",
+    },
+  },
 };
 
 const userReducer = (state = initialState, action) => {
@@ -40,11 +46,19 @@ const userReducer = (state = initialState, action) => {
         isAuthenticated: !isEmpty(action.payload),
         userDetails: action.payload,
       };
-      case UPDATE_USER_APP_SETUP_DETAILS:
-        return {
-          ...state,
-          appSetupDetails: {...state.appSetupDetails,[action.payload.name]: action.payload.value}
-        };
+    case APP_SETUP_DONE:
+      return {
+        ...state,
+        appSetupDone: action.payload,
+      };
+    case UPDATE_USER_APP_SETUP_DETAILS:
+      return {
+        ...state,
+        appSetupDetails: {
+          ...state.appSetupDetails,
+          [action.payload.name]: action.payload.value,
+        },
+      };
     case SIGN_OUT_USER:
       return {
         ...state,

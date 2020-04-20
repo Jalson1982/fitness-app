@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,8 +7,11 @@ import {
   ScrollView,
 } from "react-native";
 import moment from "moment";
-import { widthPercentageToDP } from "react-native-responsive-screen";
+import { widthPercentageToDP} from 'react-native-responsive-screen';
 import SubmitButton from "../Common/SubmitButton";
+import CirculaProgress from "../Common/CirculaProgress";
+import { useDispatch } from "react-redux";
+import { setAppSetupDone } from "../../state/user/actions";
 
 const NineteenSlide = ({
   appSetupDetails,
@@ -27,6 +30,10 @@ const NineteenSlide = ({
     workDays,
     test,
   } = appSetupDetails;
+
+  const [isLoading, setIsLoading ] = useState(false);
+  const dispatch = useDispatch();
+
   function goToEditProfile() {
     randomPrevious(0.94, -16);
   }
@@ -37,7 +44,16 @@ const NineteenSlide = ({
     randomPrevious(0.588, -10);
   }
 
+  function generateProgramme() {
+    setIsLoading(true);
+    setTimeout(()=>{
+      dispatch(setAppSetupDone(true));
+      setIsLoading(false);
+    },4000)
+  }
   return (
+    <>
+    {!isLoading ?
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.titleContainer}>
@@ -197,8 +213,10 @@ const NineteenSlide = ({
           </View>
         </View>
       </ScrollView>
-      <SubmitButton title="GENERATE YOUR PROGRAMME" />
-    </View>
+      <SubmitButton title="GENERATE YOUR PROGRAMME" onPress={generateProgramme}
+      />
+    </View> : <CirculaProgress/> }
+    </>
   );
 };
 
