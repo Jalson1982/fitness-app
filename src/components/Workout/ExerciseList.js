@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableWithoutFeedback } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -7,7 +7,7 @@ import {
 import { BorderlessButton } from "react-native-gesture-handler";
 
 const image = require("../../assets/fitness_girl.jpg");
-const ExerciseList = ({openModal}) => {
+const ExerciseList = ({navigateToVideo}) => {
   const exerciseList = [
     { image, title: "Running in place" },
     { image, title: "Bent over around the world" },
@@ -26,7 +26,7 @@ const ExerciseList = ({openModal}) => {
       {exerciseList.map((exercise) => {
         return (
           <>
-            <BorderlessButton borderless={false} onPress={openModal}>  
+            <TouchableWithoutFeedback onPress={navigateToVideo}>  
             <View style={styles.imageRow}>
               <Image
                 source={exercise.image}
@@ -35,7 +35,7 @@ const ExerciseList = ({openModal}) => {
               ></Image>
               <Text style={styles.exerciseTitle}>{exercise.title}</Text>
             </View>
-            </BorderlessButton>
+            </TouchableWithoutFeedback>
             <View style={styles.divider} />
           </>
         );
@@ -50,7 +50,7 @@ const ExerciseList = ({openModal}) => {
       {exerciseList.map((exercise) => {
         return (
           <>
-            <BorderlessButton borderless={false} onPress={openModal}>  
+           <TouchableWithoutFeedback onPress={navigateToVideo}>   
             <View style={styles.imageRow}>
               <Image
                 source={exercise.image}
@@ -59,7 +59,7 @@ const ExerciseList = ({openModal}) => {
               ></Image>
               <Text style={styles.exerciseTitle}>{exercise.title}</Text>
             </View>
-            </BorderlessButton>
+            </TouchableWithoutFeedback>
             <View style={styles.divider} />
           </>
         );
@@ -74,7 +74,7 @@ const ExerciseList = ({openModal}) => {
       {exerciseList.map((exercise) => {
         return (
           <>
-            <BorderlessButton borderless={false} onPress={openModal}>  
+            <TouchableWithoutFeedback onPress={navigateToVideo}>   
             <View style={styles.imageRow}>
               <Image
                 source={exercise.image}
@@ -83,7 +83,7 @@ const ExerciseList = ({openModal}) => {
               ></Image>
               <Text style={styles.exerciseTitle}>{exercise.title}</Text>
             </View>
-            </BorderlessButton>
+            </TouchableWithoutFeedback>
             <View style={styles.divider} />
           </>
         );
@@ -98,7 +98,7 @@ const ExerciseList = ({openModal}) => {
       {exerciseList.map((exercise) => {
         return (
           <>
-          <BorderlessButton borderless={false} onPress={openModal}>  
+          <BorderlessButton borderless={false} onPress={navigateToVideo}>  
             <View style={styles.imageRow}>
               <Image
                 source={exercise.image}

@@ -157,9 +157,15 @@ const EighTeenSlide = ({ goToNext, reminder, updateDetails }) => {
                   reminder !== 0 && reminder ?
                   <Text style={{opacity:0.6,fontSize:15}}>({reminder})</Text> : null}
               </Text>
-              <RNPickerSelect
+              {/*<RNPickerSelect
                 style={{
                   inputIOSContainer: { ontSize: 20 },
+                  inputAndroidContainer: { ontSize: 20 },
+                  inputAndroid:{
+                    fontSize: 16,
+                    fontWeight: "500",
+                    display: "none",
+                  },
                   inputIOS: {
                     fontSize: 16,
                     fontWeight: "500",
@@ -167,7 +173,7 @@ const EighTeenSlide = ({ goToNext, reminder, updateDetails }) => {
                   },
                 }}
                 ref={pickerRef}
-                placeholder=""
+                // placeholder={null}
                 value={time}
                 onDonePress={() => {
                   updateDetails("reminder", time);
@@ -175,7 +181,7 @@ const EighTeenSlide = ({ goToNext, reminder, updateDetails }) => {
                 }}
                 onValueChange={(value) => setTime(value)}
                 items={items}
-              />
+              />*/}
             </View>
             {reminder &&
             reminder !== 6 &&

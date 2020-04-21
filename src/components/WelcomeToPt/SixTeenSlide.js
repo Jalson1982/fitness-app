@@ -114,9 +114,7 @@ const SixTeenSlide = ({ goToNext, sessionTime, updateDetails }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
+    flex: 1
   },
   titleContainer: { flex: 1 },
   title: {

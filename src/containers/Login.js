@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, ImageBackground } from "react-native";
+import { StyleSheet, ImageBackground } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Logo from "../components/InitialScreen/Logo";
 import { useSafeArea } from "react-native-safe-area-context";
@@ -57,8 +57,10 @@ const Login = ({ navigation }) => {
   }
   return (
     <KeyboardAwareScrollView
+    enableOnAndroid
       style={{ flex: 1, height: heightPercentageToDP("100%") }}
       contentContainerStyle={{ flex: 1 }}
+      
     >
       <ImageBackground
         source={backgroundImage}

@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, TransitionPresets } from "@react-navigation/stack";
 import InitialScreen from "../containers/InitialScreen";
 import Login from "../containers/Login";
 import SignUp from "../containers/SignUp";
@@ -12,6 +12,8 @@ import ProfileSVG from '../components/Svg/profileSvg';
 import Schedule from "../containers/Schedule";
 import Workout from "../containers/Workout";
 import VideoExercise from "../containers/VideoExercise";
+import Menu from "../containers/Menu";
+import Profile from "../containers/Profile";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -31,7 +33,7 @@ const tabs = {
       inactiveColor: 'rgba(51,51,51,0)',
     },
   },
-  Likes: {
+  Menu: {
     labelStyle: {
       color: '#45db74',
     },
@@ -87,12 +89,18 @@ export function AppSetup() {
   );
 }
 
+export function ModalVideo() {
+  return (
+    <Stack.Navigator screenOptions={{headerShown:false}}>
+      <Stack.Screen name="VideoExercise" component={VideoExercise} ></Stack.Screen>
+    </Stack.Navigator>
+  )
+}
 export function Workouts() {
   return (
     <Stack.Navigator screenOptions={{headerShown:false}}>
       <Stack.Screen name="Schedule" component={Schedule} />
       <Stack.Screen name="Workout" component={Workout} />
-      <Stack.Screen name="VideoExercise" component={VideoExercise} />
     </Stack.Navigator>
   )
 }
@@ -117,14 +125,14 @@ export function TabNavigator() {
   >
 
     <Tab.Screen
-      name="Likes"
+      name="Menu"
       options={{
         tabBarLabel: 'Menu',
       }}
       initialParams={{
         backgroundColor: '#000',
       }}
-      component={Schedule}
+      component={Menu}
     />
     <Tab.Screen
       name="Profile"
@@ -134,7 +142,7 @@ export function TabNavigator() {
       initialParams={{
         backgroundColor: '#000',
       }}
-      component={Schedule}
+      component={Profile}
     />
      <Tab.Screen
       name="Home"
@@ -148,4 +156,14 @@ export function TabNavigator() {
     />
      </Tab.Navigator>
   );
+}
+
+
+export function RootStack() {
+  return (
+    <Stack.Navigator screenOptions={{headerShown:false}}>
+      <Stack.Screen name="Tabs" component={TabNavigator} />
+      <Stack.Screen name="ModalVideo" component={ModalVideo} options={{...TransitionPresets.ModalTransition}}/>
+    </Stack.Navigator>
+  )
 }

@@ -8,13 +8,11 @@ import { widthPercentageToDP } from "react-native-responsive-screen";
 
 const logo = require("../../assets/pt.png");
 
-const Header = ({ goBack, color }) => {
-  const insent = useSafeArea().top;
-
+const Header = ({ goBack }) => {
   return (
     <View>
       <View style={[styles.container]}>
-        <TouchableComponent>
+        <TouchableComponent onPress={goBack}>
           <View style={styles.rowContainer}>
             <Icon
               name="ios-arrow-back"

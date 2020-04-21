@@ -3,7 +3,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { createStackNavigator } from "@react-navigation/stack";
-import { AuthScreen, AppSetup, TabNavigator } from "./src/navigation/navigation";
+import { AuthScreen, AppSetup, TabNavigator, RootStack } from "./src/navigation/navigation";
 
 const Stack = createStackNavigator();
 
@@ -19,7 +19,7 @@ const App = () => {
             <Stack.Screen name="Intro" component={AuthScreen}></Stack.Screen>
           )}
           {isAuthenticated && !appSetupDone && <Stack.Screen name="AppSetup" component={AppSetup} />}
-          {isAuthenticated && appSetupDone && <Stack.Screen name="Main" component={TabNavigator} />}
+          {isAuthenticated && appSetupDone && <Stack.Screen name="Main" component={RootStack} />}
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

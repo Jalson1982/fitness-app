@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import moment from "moment";
 import { widthPercentageToDP } from "react-native-responsive-screen";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DatePicker from "react-native-date-picker";
 import SubmitButton from "../Common/SubmitButton";
 
 const FourSlide = ({ goToNext, updateDetails, birthData }) => {
@@ -13,7 +13,7 @@ const FourSlide = ({ goToNext, updateDetails, birthData }) => {
       setDate(new Date(birthData));
     }
   }, []);
-  function onChange(event, date) {
+  function onChange(date) {
     setDate(date);
   }
 
@@ -33,13 +33,13 @@ const FourSlide = ({ goToNext, updateDetails, birthData }) => {
           your physical fitness.
         </Text>
         <View style={styles.dateContainer}>
-          <DateTimePicker
-            value={date}
-            maximumDate={new Date()}
-            mode={"date"}
-            display="calendar"
-            onChange={onChange}
+          <DatePicker
+            date={date}
+            style={{alignSelf:'center'}}
+            onDateChange={setDate}
+            mode="date"
           />
+     
         </View>
         <SubmitButton title="NEXT" onPress={saveDate} />
       </View>
@@ -52,7 +52,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   titleContainer: { flex: 1 },
-  title: { marginTop: 20, fontSize: 25, fontWeight: "600", paddingLeft:20,paddingRight:20 },
+  title: {
+    marginTop: 20,
+    fontSize: 25,
+    fontWeight: "600",
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
   description: {
     paddingTop: 20,
     fontSize: 16,
@@ -60,6 +66,6 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
   },
-  dateContainer: { flex: 1, marginTop: 20, },
+  dateContainer: { flex: 1, marginTop: 20 },
 });
 export default FourSlide;

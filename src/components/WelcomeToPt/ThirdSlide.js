@@ -9,7 +9,6 @@ const ThirdSlide = ({ goToNext, sex, updateDetails }) => {
     goToNext();
     updateDetails('sex',val)
   }
-  console.log(sex)
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>

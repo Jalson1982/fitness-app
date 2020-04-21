@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Video } from "expo-av";
 import {
   ActivityIndicator,
@@ -6,29 +6,27 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from "react-native";
-import Modal from "react-native-modal";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const video = require("../assets/287-1080.mp4");
-const VideoExercise = ({ isVisible, isLoading, closeModal }) => {
+const VideoExercise = ({ navigation }) => {
+
+  function goBack() {
+    navigation.goBack();
+  }
+
   return (
-    <Modal
-      isVisible={isVisible}
-      style={{ margin: 0 }}
-      animationIn="zoomIn"
-      animationOut="fadeOutDown"
-    >
-      <TouchableWithoutFeedback onPress={closeModal}>
+    <>
+      <TouchableWithoutFeedback onPress={goBack}>
         <View style={styles.closeButton}>
           <Icon name="close" size={30} color="#FFFFFF" />
         </View>
       </TouchableWithoutFeedback>
-      <TouchableWithoutFeedback onPress={closeModal}>
+      <TouchableWithoutFeedback onPress={goBack}>
         <View style={styles.musicNote}>
           <Icon name="music-note" size={30} color="#FFFFFF" />
         </View>
       </TouchableWithoutFeedback>
-      {!isLoading ? (
         <View style={{ flex: 1 }}>
           <Video
             isLooping
@@ -40,21 +38,14 @@ const VideoExercise = ({ isVisible, isLoading, closeModal }) => {
             style={[{ flex: 1 }]}
           ></Video>
         </View>
-      ) : (
-        <View
-          style={styles.indicator}
-        >
-          <ActivityIndicator size="large" />
-        </View>
-      )}
-    </Modal>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   closeButton: {
     position: "absolute",
-    top: 50,
+    top: 10,
     left: 10,
     justifyContent: "center",
     alignItems: "center",
@@ -64,7 +55,7 @@ const styles = StyleSheet.create({
   },
   musicNote:{
     position: "absolute",
-    top: 50,
+    top: 10,
     right: 10,
     justifyContent: "center",
     alignItems: "center",

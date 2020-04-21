@@ -59,21 +59,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FBSDKCoreKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FBSDKLoginKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FBSDKShareKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Flipper-DoubleConversion.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -374,7 +359,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>react-native-fbsdk.xcscheme</key>
+		<key>react-native-date-picker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

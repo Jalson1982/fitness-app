@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
-import { widthPercentageToDP } from "react-native-responsive-screen";
+import { widthPercentageToDP, heightPercentageToDP } from "react-native-responsive-screen";
 import SubmitButton from "../Common/SubmitButton";
 
 const SevenSlide = ({ goToNext, weight, updateDetails, metric }) => {
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     width: widthPercentageToDP("90%"),
   },
   textInput: {
-    height: 60,
+    height: heightPercentageToDP('10%'),
     borderColor: "gray",
     width: 150,
     fontSize: 45,

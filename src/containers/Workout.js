@@ -6,35 +6,27 @@ import WorkoutInfo from "../components/Workout/WorkoutInfo";
 import Equipment from "../components/Workout/Equipment";
 import ExerciseList from "../components/Workout/ExerciseList";
 import { ScrollView } from "react-native-gesture-handler";
-import Modal from 'react-native-modal';
-import VideoExercise from "./VideoExercise";
 
 const Workout = ({navigation}) => {
   const insent = useSafeArea().top;
-  const [isLoading, setIsLoading ] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
 
-  function openModal() {
-      setIsVisible(true);
-      setIsLoading(true);
-      setTimeout(()=>{
-          setIsLoading(false);
-      },500)
+  function navigateToVideo() {
+    navigation.navigate('ModalVideo');
   }
-  function closeModal() {
-      setIsVisible(false);
+
+  function goBack() {
+    navigation.goBack();
   }
   return (
     <View style={{ flex: 1, paddingTop: insent }}>
-    <VideoExercise isLoading={isLoading} isVisible={isVisible} closeModal={closeModal}/>
-      <Header />
+      <Header goBack={goBack}/>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 30 }}
       >
         <WorkoutInfo />
         <Equipment />
-        <ExerciseList openModal={openModal} />
+        <ExerciseList navigateToVideo={navigateToVideo} />
       </ScrollView>
     </View>
   );

@@ -136,6 +136,7 @@ const SignUp = ({ navigation }) => {
   return (
     <KeyboardAwareScrollView
       scrollEnabled
+      enableOnAndroid
       showsVerticalScrollIndicator={false}
       style={{ flex: 1, height: heightPercentageToDP("100%") }}
       contentContainerStyle={{ flex: 1, paddingTop: insent }}

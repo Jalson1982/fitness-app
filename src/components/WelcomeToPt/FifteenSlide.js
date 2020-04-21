@@ -74,8 +74,6 @@ const FifteenSlide = ({ goToNext, experience, updateDetails }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
   },
   titleContainer: { flex: 1 },
   title: {

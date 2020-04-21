@@ -27,7 +27,7 @@
     "moment": "^2.24.0",
     "react": "16.11.0",
     "react-native": "0.62.2",
-    "react-native-fbsdk": "^1.1.2",
+    "react-native-date-picker": "^2.7.9",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-keyboard-aware-scroll-view": "git+https://github.com/thijs-qv/react-native-keyboard-aware-scroll-view.git",
     "react-native-material-textfield": "github:n4kz/react-native-material-textfield#729008b847eb38129d0b886e98253d4c11f6d4d3",

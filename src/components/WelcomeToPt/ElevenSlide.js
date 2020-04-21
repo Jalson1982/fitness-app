@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import LottieView from "lottie-react-native";
 import SubmitButton from "../Common/SubmitButton.js";
-import { widthPercentageToDP } from "react-native-responsive-screen";
+import { widthPercentageToDP, heightPercentageToDP } from "react-native-responsive-screen";
 
 const ElevenSlide = ({goToNext}) => {
   return (
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   lottiView: {flex:1,justifyContent:'center', alignItems:'center'},
-  animation: { height: widthPercentageToDP('95%'), },
+  animation: { height: heightPercentageToDP('53%'), },
   title: { marginTop: 60, fontSize: 25, fontWeight: "600", paddingLeft:20 },
   description:{paddingTop:10,fontSize:16,paddingLeft:20,paddingRight:20,color:'gray'}
 });
